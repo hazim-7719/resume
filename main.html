@@ -1,585 +1,930 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Danish · CV · lively beige</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danish · CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ── Reset & base ── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* ---------- COLOUR PALETTE ---------- */
-    :root {
-      --beige-bg: #f4efe7;
-      --card-bg: #faf7f0;
-      --text-dark: #2e2b26;
-      --text-muted: #6b6256;
-      --text-soft: #8a7e6b;
+        html {
+            scroll-behavior: smooth;
+        }
 
-      /* lively accents */
-      --coral: #d97a5a;
-      --coral-light: #f0d5c8;
-      --sage: #8baa8b;
-      --sage-light: #dce8dc;
-      --gold: #d4a373;
-      --gold-light: #f0e2d0;
-      --rose: #c78a8a;
-      --rose-light: #edd6d6;
-    }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f4f7fc;
+            color: #1a2634;
+            line-height: 1.6;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
 
-    body {
-      background: var(--beige-bg);
-      font-family: 'Inter', sans-serif;
-      color: var(--text-dark);
-      line-height: 1.5;
-      padding: 2rem 1.5rem;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        /* ── Card container ── */
+        .cv-wrapper {
+            max-width: 1100px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 60px -15px rgba(0, 20, 40, 0.20);
+            overflow: hidden;
+            transition: box-shadow 0.4s ease;
+            animation: floatIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
 
-    /* ---------- main card ---------- */
-    .cv-card {
-      max-width: 1100px;
-      width: 100%;
-      background: var(--card-bg);
-      border-radius: 2.5rem;
-      padding: 2.5rem 2.8rem;
-      box-shadow: 0 20px 40px -12px rgba(140, 120, 90, 0.2), 0 8px 24px -6px rgba(0,0,0,0.04);
-      animation: cardEntry 0.9s cubic-bezier(0.23, 1, 0.32, 1);
-      position: relative;
-      overflow: hidden;
-    }
+        @keyframes floatIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
 
-    @keyframes cardEntry {
-      0% { opacity: 0; transform: translateY(30px) scale(0.97); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
+        .cv-wrapper:hover {
+            box-shadow: 0 35px 75px -18px rgba(0, 40, 80, 0.25);
+        }
 
-    /* ---------- colourful blobs ---------- */
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 0;
-      animation: floatBlob 14s infinite alternate ease-in-out;
-      opacity: 0.25;
-    }
-    .blob1 {
-      width: 240px;
-      height: 240px;
-      top: -70px;
-      right: -50px;
-      background: var(--coral);
-      animation-duration: 16s;
-    }
-    .blob2 {
-      width: 180px;
-      height: 180px;
-      bottom: 10px;
-      left: -50px;
-      background: var(--sage);
-      animation-duration: 20s;
-      opacity: 0.2;
-    }
-    .blob3 {
-      width: 120px;
-      height: 120px;
-      bottom: 30%;
-      right: 5%;
-      background: var(--gold);
-      animation-duration: 13s;
-      opacity: 0.2;
-    }
-    .blob4 {
-      width: 100px;
-      height: 100px;
-      top: 20%;
-      left: 20%;
-      background: var(--rose);
-      animation-duration: 18s;
-      opacity: 0.15;
-    }
+        /* ── Header / top bar ── */
+        .cv-header {
+            background: linear-gradient(135deg, #0b1a2e 0%, #1a3550 100%);
+            padding: 2rem 3rem 2rem 3rem;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
 
-    @keyframes floatBlob {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(25px, -25px) scale(1.15); }
-    }
+        .cv-header::after {
+            content: '';
+            position: absolute;
+            top: -60%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 215, 100, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
 
-    .content {
-      position: relative;
-      z-index: 2;
-    }
+        .cv-header .header-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            gap: 1.2rem 2rem;
+        }
 
-    /* ---------- grid ---------- */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 2.2rem;
-      margin-top: 1.2rem;
-    }
+        /* ── Profile picture ── */
+        .profile-pic {
+            flex-shrink: 0;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 4px solid #ffd966;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #1a3550; /* fallback */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .sidebar { display: flex; flex-direction: column; gap: 2rem; }
-    .main-content { display: flex; flex-direction: column; gap: 2rem; }
+        .profile-pic:hover {
+            transform: scale(1.04);
+            box-shadow: 0 12px 28px rgba(255, 215, 100, 0.3);
+        }
 
-    /* ---------- typography ---------- */
-    h1 {
-      font-size: 2.4rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--text-dark);
-      margin-bottom: 0.2rem;
-      animation: slideFade 0.7s ease-out;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
-    .subhead {
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--text-muted);
-      letter-spacing: 0.02em;
-      border-bottom: 2px solid var(--coral-light);
-      padding-bottom: 1rem;
-      margin-bottom: 0.8rem;
-      animation: slideFade 0.9s ease-out;
-    }
+        .profile-pic .placeholder-icon {
+            font-size: 4rem;
+            color: #ffd966;
+            opacity: 0.6;
+        }
 
-    .section-title {
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--coral);
-      margin-bottom: 1rem;
-      border-bottom: 2px solid var(--sage-light);
-      padding-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .section-title i {
-      color: var(--gold);
-      font-size: 1rem;
-    }
+        /* Name & title */
+        .cv-header .name-title {
+            flex: 1 1 auto;
+            min-width: 180px;
+        }
 
-    /* ---------- animated items ---------- */
-    .summary {
-      font-size: 0.95rem;
-      color: var(--text-dark);
-      background: white;
-      padding: 1.2rem 1.4rem;
-      border-radius: 1.8rem;
-      line-height: 1.6;
-      border-left: 6px solid var(--coral);
-      box-shadow: 0 2px 8px rgba(200, 160, 130, 0.08);
-      transition: all 0.25s ease;
-      animation: fadeUp 0.8s ease-out;
-    }
-    .summary:hover {
-      transform: scale(1.01) translateY(-2px);
-      border-left-color: var(--gold);
-      box-shadow: 0 6px 16px rgba(200, 160, 130, 0.12);
-    }
+        .cv-header .name-title h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.2rem;
+            background: linear-gradient(to right, #f6e6b0, #ffd966);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-    .chip {
-      padding: 0.3rem 1rem;
-      border-radius: 40px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: #3c3a36;
-      border: 1px solid #dfd5c4;
-      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-      display: inline-block;
-      animation: chipPop 0.5s ease-out both;
-      background: #ede7db;
-    }
-    /* colourful chips */
-    .chip:nth-child(6n+1) { background: var(--coral-light); border-color: var(--coral); }
-    .chip:nth-child(6n+2) { background: var(--sage-light); border-color: var(--sage); }
-    .chip:nth-child(6n+3) { background: var(--gold-light); border-color: var(--gold); }
-    .chip:nth-child(6n+4) { background: var(--rose-light); border-color: var(--rose); }
-    .chip:nth-child(6n+5) { background: #f0e0d8; border-color: #c9a89a; }
-    .chip:nth-child(6n+6) { background: #dde8e0; border-color: #8baa8b; }
+        .cv-header .name-title .badge {
+            display: inline-block;
+            background: rgba(255, 215, 100, 0.18);
+            backdrop-filter: blur(4px);
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            color: #ffd966;
+            border: 1px solid rgba(255, 215, 100, 0.25);
+            margin-top: 0.2rem;
+        }
 
-    .chip:hover {
-      transform: scale(1.08) translateY(-2px);
-      box-shadow: 0 4px 12px rgba(160, 140, 110, 0.15);
-      border-color: var(--coral);
-    }
+        .cv-header .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 2rem;
+            font-size: 0.95rem;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 0.8rem 1.8rem;
+            border-radius: 60px;
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
 
-    .chip-group .chip:nth-child(1) { animation-delay: 0.02s; }
-    .chip-group .chip:nth-child(2) { animation-delay: 0.06s; }
-    .chip-group .chip:nth-child(3) { animation-delay: 0.10s; }
-    .chip-group .chip:nth-child(4) { animation-delay: 0.14s; }
-    .chip-group .chip:nth-child(5) { animation-delay: 0.18s; }
-    .chip-group .chip:nth-child(6) { animation-delay: 0.22s; }
-    .chip-group .chip:nth-child(7) { animation-delay: 0.26s; }
-    .chip-group .chip:nth-child(8) { animation-delay: 0.30s; }
+        .cv-header .contact-links a {
+            color: #e8edf3;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.25s ease, transform 0.2s ease;
+        }
 
-    @keyframes chipPop {
-      0% { opacity: 0; transform: scale(0.7); }
-      100% { opacity: 1; transform: scale(1); }
-    }
+        .cv-header .contact-links a i {
+            color: #ffd966;
+            font-size: 1rem;
+            width: 1.2rem;
+            text-align: center;
+        }
 
-    @keyframes fadeUp {
-      0% { opacity: 0; transform: translateY(12px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
+        .cv-header .contact-links a:hover {
+            color: #ffd966;
+            transform: translateY(-2px);
+        }
 
-    @keyframes slideFade {
-      0% { opacity: 0; transform: translateX(-10px); }
-      100% { opacity: 1; transform: translateX(0); }
-    }
+        /* ── Summary ── */
+        .summary-section {
+            padding: 1.8rem 3rem 1.2rem 3rem;
+            background: #f9fbfe;
+            border-bottom: 1px solid #e9edf4;
+        }
 
-    /* project & exp cards with left accent */
-    .project-item, .exp-item, .ref-card, .cert-item, .edu-card {
-      transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
-      animation: fadeUp 0.6s ease-out both;
-    }
-    .project-item:nth-child(1) { animation-delay: 0.05s; }
-    .project-item:nth-child(2) { animation-delay: 0.15s; }
-    .project-item:nth-child(3) { animation-delay: 0.25s; }
+        .summary-section p {
+            font-size: 1.05rem;
+            color: #2d3a4b;
+            max-width: 900px;
+            font-weight: 400;
+            line-height: 1.7;
+            opacity: 0;
+            animation: slideFade 0.7s 0.25s ease forwards;
+        }
 
-    .project-item {
-      background: white;
-      padding: 1rem 1.4rem;
-      border-radius: 2rem;
-      margin-bottom: 0.8rem;
-      border-left: 6px solid var(--sage);
-      box-shadow: 0 2px 6px rgba(180, 155, 125, 0.04);
-    }
-    .project-item:hover {
-      border-left-color: var(--coral);
-      transform: translateX(8px) scale(1.005);
-      box-shadow: 0 8px 18px rgba(160, 140, 110, 0.08);
-    }
+        @keyframes slideFade {
+            0% {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .exp-item {
-      background: white;
-      padding: 1rem 1.4rem;
-      border-radius: 2rem;
-      margin-bottom: 0.8rem;
-      border-left: 6px solid var(--gold);
-    }
-    .exp-item:hover {
-      border-left-color: var(--coral);
-      transform: translateX(6px) scale(1.002);
-      box-shadow: 0 8px 18px rgba(160, 140, 110, 0.07);
-    }
+        /* ── Main grid ── */
+        .cv-grid {
+            display: grid;
+            grid-template-columns: 1fr 2.2fr;
+            gap: 0;
+            padding: 2rem 3rem 3rem 3rem;
+            background: #ffffff;
+        }
 
-    .cert-item {
-      background: white;
-      border-radius: 2rem;
-      padding: 0.6rem 1.2rem;
-      font-size: 0.85rem;
-      border: 1px solid #e8dfd0;
-      display: inline-block;
-      margin: 0.2rem 0.2rem 0.2rem 0;
-      transition: all 0.2s;
-    }
-    .cert-item i { color: var(--gold); }
-    .cert-item:hover {
-      background: var(--coral-light);
-      transform: translateY(-3px) scale(1.02);
-      border-color: var(--coral);
-      box-shadow: 0 6px 12px rgba(200, 160, 130, 0.1);
-    }
+        /* ── Left column ── */
+        .cv-left {
+            padding-right: 2.5rem;
+            border-right: 1px solid #eef2f8;
+        }
 
-    .ref-card {
-      background: white;
-      border-radius: 2rem;
-      padding: 1rem 1.4rem;
-      font-size: 0.9rem;
-      border-left: 6px solid var(--rose);
-    }
-    .ref-card:hover {
-      border-left-color: var(--coral);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(180, 155, 125, 0.08);
-    }
+        .cv-left .block {
+            margin-bottom: 2.4rem;
+        }
 
-    .edu-card {
-      background: white;
-      border-radius: 2rem;
-      padding: 1rem 1.4rem;
-      border-left: 6px solid var(--gold);
-      transition: all 0.2s;
-    }
-    .edu-card:hover {
-      border-left-color: var(--coral);
-      transform: scale(1.005) translateY(-2px);
-      box-shadow: 0 4px 12px rgba(180, 155, 125, 0.06);
-    }
+        .cv-left .block:last-child {
+            margin-bottom: 0;
+        }
 
-    .lang-chip {
-      background: white;
-      padding: 0.3rem 1.2rem;
-      border-radius: 40px;
-      border: 1px solid var(--coral);
-      color: var(--coral);
-      font-weight: 500;
-      transition: all 0.2s;
-      animation: fadeUp 0.5s ease-out both;
-    }
-    .lang-chip:hover {
-      background: var(--coral);
-      color: white;
-      transform: scale(1.06);
-      border-color: var(--coral);
-    }
+        .block-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 700;
+            color: #6b7f97;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #eef2f8;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
 
-    .tag-pill {
-      display: inline-block;
-      background: var(--sage-light);
-      padding: 0.2rem 0.9rem;
-      border-radius: 30px;
-      font-size: 0.75rem;
-      border: 1px solid var(--sage);
-      color: var(--text-dark);
-      transition: all 0.2s;
-      animation: fadeUp 0.5s ease-out both;
-    }
-    .tag-pill:hover {
-      background: var(--coral-light);
-      border-color: var(--coral);
-      transform: translateY(-2px);
-    }
+        .block-title i {
+            color: #ffb347;
+            font-size: 0.9rem;
+            width: 1.4rem;
+        }
 
-    /* profile picture */
-    .profile-pic {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: contain;
-      background: #ede7db;
-      border: 4px solid var(--coral);
-      box-shadow: 0 4px 16px rgba(217, 122, 90, 0.25);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-      animation: floatPic 4s infinite alternate ease-in-out;
-    }
-    .profile-pic:hover {
-      transform: scale(1.08);
-      box-shadow: 0 8px 28px rgba(217, 122, 90, 0.35);
-      border-color: var(--gold);
-    }
-    @keyframes floatPic {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-6px); }
-    }
+        /* Education */
+        .edu-item {
+            margin-bottom: 1.2rem;
+        }
 
-    .pulse-dot {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      background: var(--coral);
-      border-radius: 50%;
-      margin-left: 6px;
-      animation: pulseDot 2s infinite;
-    }
-    @keyframes pulseDot {
-      0% { opacity: 0.3; transform: scale(0.9); }
-      50% { opacity: 1; transform: scale(1.3); }
-      100% { opacity: 0.3; transform: scale(0.9); }
-    }
+        .edu-item .school {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #0b1a2e;
+        }
 
-    .float-icon {
-      display: inline-block;
-      animation: floatIcon 3s infinite alternate ease-in-out;
-      color: var(--coral);
-    }
-    @keyframes floatIcon {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-4px); }
-    }
+        .edu-item .degree {
+            font-weight: 600;
+            color: #1f3a57;
+            font-size: 0.95rem;
+        }
 
-    /* extra tag cloud container */
-    .tag-cloud {
-      background: white;
-      border-radius: 2rem;
-      padding: 0.8rem 1.4rem;
-      border: 1px solid #e8dfd0;
-      animation: fadeUp 0.8s ease-out;
-      border-left: 6px solid var(--gold);
-    }
+        .edu-item .meta {
+            font-size: 0.85rem;
+            color: #5f738b;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 1.2rem;
+            margin-top: 0.2rem;
+        }
 
-    @media (max-width: 760px) {
-      .cv-card { padding: 1.8rem; }
-      .grid-2 { grid-template-columns: 1fr; gap: 1.5rem; }
-      h1 { font-size: 2rem; flex-wrap: wrap; }
-      .blob1, .blob2, .blob3, .blob4 { display: none; }
-    }
-  </style>
+        .edu-item .meta span {
+            background: #f0f4fa;
+            padding: 0.1rem 0.8rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.8rem;
+            color: #1f3a57;
+        }
+
+        .edu-item .cgpa {
+            display: inline-block;
+            background: #0b1a2e;
+            color: #ffd966;
+            font-weight: 700;
+            padding: 0.1rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Skills */
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 0.6rem;
+        }
+
+        .skills-tags .tag {
+            background: #eef3fa;
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1f3a57;
+            transition: all 0.2s ease;
+            cursor: default;
+            border: 1px solid transparent;
+        }
+
+        .skills-tags .tag:hover {
+            background: #0b1a2e;
+            color: #ffd966;
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 18px -8px rgba(11, 26, 46, 0.25);
+            border-color: #ffd966;
+        }
+
+        .skill-group {
+            margin-bottom: 0.8rem;
+        }
+
+        .skill-group .label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: #6b7f97;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Languages */
+        .lang-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.3rem 0;
+            border-bottom: 1px dashed #e9edf4;
+            font-size: 0.95rem;
+        }
+
+        .lang-item:last-child {
+            border-bottom: none;
+        }
+
+        .lang-item .name {
+            font-weight: 500;
+        }
+
+        .lang-item .level {
+            color: #5f738b;
+            font-size: 0.85rem;
+        }
+
+        /* Certifications */
+        .cert-list {
+            list-style: none;
+        }
+
+        .cert-list li {
+            padding: 0.4rem 0 0.4rem 1.6rem;
+            position: relative;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #f0f4fa;
+        }
+
+        .cert-list li:last-child {
+            border-bottom: none;
+        }
+
+        .cert-list li::before {
+            content: '🏅';
+            position: absolute;
+            left: 0;
+            top: 0.4rem;
+            font-size: 0.85rem;
+        }
+
+        /* References */
+        .ref-item {
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        .ref-item .name {
+            font-weight: 700;
+            color: #0b1a2e;
+        }
+
+        .ref-item .title {
+            color: #3d536b;
+            font-size: 0.85rem;
+        }
+
+        .ref-item .email {
+            font-size: 0.8rem;
+            color: #3d7eb0;
+            word-break: break-all;
+        }
+
+        /* ── Right column ── */
+        .cv-right {
+            padding-left: 2.5rem;
+        }
+
+        .cv-right .block {
+            margin-bottom: 2.4rem;
+        }
+
+        .cv-right .block:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Experience & Projects */
+        .exp-item,
+        .project-item {
+            margin-bottom: 1.6rem;
+            padding-bottom: 1.6rem;
+            border-bottom: 1px solid #eef2f8;
+            opacity: 0;
+            animation: slideFade 0.6s ease forwards;
+        }
+
+        .exp-item:last-child,
+        .project-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .exp-item .exp-header,
+        .project-item .project-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.2rem;
+        }
+
+        .exp-item .exp-header .title,
+        .project-item .project-header .title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #0b1a2e;
+        }
+
+        .exp-item .exp-header .company,
+        .project-item .project-header .tech {
+            font-weight: 500;
+            color: #3d7eb0;
+            font-size: 0.9rem;
+        }
+
+        .exp-item .exp-header .date,
+        .project-item .project-header .date {
+            font-size: 0.8rem;
+            color: #6b7f97;
+            font-weight: 500;
+            background: #f0f4fa;
+            padding: 0.1rem 1rem;
+            border-radius: 30px;
+        }
+
+        .exp-item ul,
+        .project-item ul {
+            list-style: none;
+            margin-top: 0.4rem;
+            padding-left: 0;
+        }
+
+        .exp-item ul li,
+        .project-item ul li {
+            padding: 0.2rem 0 0.2rem 1.6rem;
+            position: relative;
+            font-size: 0.92rem;
+            color: #2d3a4b;
+        }
+
+        .exp-item ul li::before,
+        .project-item ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #ffb347;
+            font-weight: 700;
+        }
+
+        /* Project specific */
+        .project-item .project-header .tech {
+            background: #eef3fa;
+            padding: 0.1rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1f3a57;
+        }
+
+        /* ── Animations delays ── */
+        .exp-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        .exp-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .exp-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        .project-item:nth-child(1) {
+            animation-delay: 0.15s;
+        }
+        .project-item:nth-child(2) {
+            animation-delay: 0.25s;
+        }
+        .project-item:nth-child(3) {
+            animation-delay: 0.35s;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 880px) {
+            .cv-grid {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+
+            .cv-left {
+                padding-right: 0;
+                border-right: none;
+                border-bottom: 1px solid #eef2f8;
+                padding-bottom: 1.5rem;
+            }
+
+            .cv-right {
+                padding-left: 0;
+            }
+
+            .cv-header {
+                padding: 1.8rem 1.5rem;
+            }
+
+            .cv-header .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .profile-pic {
+                width: 90px;
+                height: 90px;
+            }
+
+            .cv-header .contact-links {
+                padding: 0.6rem 1.2rem;
+                gap: 0.8rem 1.2rem;
+                font-size: 0.85rem;
+                flex-wrap: wrap;
+                width: 100%;
+            }
+
+            .cv-header .name-title h1 {
+                font-size: 2.2rem;
+            }
+
+            .summary-section {
+                padding: 1.2rem 1.5rem;
+            }
+
+            .summary-section p {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.8rem;
+            }
+
+            .cv-wrapper {
+                border-radius: 1.5rem;
+            }
+
+            .cv-header .name-title h1 {
+                font-size: 1.8rem;
+            }
+
+            .cv-header .contact-links {
+                flex-direction: column;
+                gap: 0.4rem;
+                width: 100%;
+                border-radius: 30px;
+            }
+
+            .cv-grid {
+                padding: 1rem;
+            }
+
+            .exp-item .exp-header,
+            .project-item .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.2rem;
+            }
+
+            .exp-item .exp-header .date,
+            .project-item .project-header .date {
+                font-size: 0.75rem;
+            }
+
+            .profile-pic {
+                width: 75px;
+                height: 75px;
+            }
+        }
+
+        /* ── Scroll-triggered reveal (optional extra polish) ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Print friendly ── */
+        @media print {
+            body {
+                background: #fff;
+                padding: 0.2in;
+            }
+            .cv-wrapper {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .cv-header {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .skills-tags .tag:hover {
+                transform: none !important;
+                box-shadow: none !important;
+            }
+            .cv-wrapper:hover {
+                box-shadow: none !important;
+            }
+            .exp-item,
+            .project-item {
+                opacity: 1 !important;
+                animation: none !important;
+            }
+            .summary-section p {
+                opacity: 1 !important;
+                animation: none !important;
+            }
+            .cv-wrapper {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .profile-pic:hover {
+                transform: none !important;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25) !important;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="cv-card">
-  <!-- colourful decorative blobs -->
-  <div class="blob blob1"></div>
-  <div class="blob blob2"></div>
-  <div class="blob blob3"></div>
-  <div class="blob blob4"></div>
 
-  <div class="content">
-    <!-- header -->
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
-      <div>
-        <h1>
-          <img src="black suit.jpg" class="profile-pic" alt="Danish" />
-          Danish <span class="pulse-dot"></span>
-        </h1>
-        <div class="subhead"><i class="fas fa-graduation-cap float-icon" style="margin-right: 8px;"></i> Computer Engineering · UniMAP</div>
-      </div>
-      <div style="display: flex; gap: 0.8rem; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.3rem; animation: fadeUp 0.7s ease-out;">
-        <span><i class="fas fa-map-pin float-icon"></i> Malaysia</span>
-        <span><i class="fas fa-envelope float-icon"></i> danish@cv.demo</span>
-      </div>
+    <div class="cv-wrapper">
+
+        <!-- ═══ HEADER ═══ -->
+        <header class="cv-header">
+            <div class="header-content">
+                <!-- Profile Picture Slot -->
+                <div class="profile-pic">
+                    <!-- ★ Replace the src below with your own photo URL ★ -->
+                    <img src="black suit.jpg" alt="Danish profile photo" />
+                    <!-- Fallback: if image fails, a placeholder icon will show (hidden by img) -->
+                </div>
+
+                <div class="name-title">
+                    <h1>Danish</h1>
+                    <div class="badge">
+                        <i class="fas fa-graduation-cap" style="margin-right:6px;"></i> Computer Engineering · UniMAP
+                    </div>
+                </div>
+
+                <div class="contact-links">
+                    <a href="#"><i class="fas fa-phone-alt"></i> +60 12-345 6789</a>
+                    <a href="#"><i class="fas fa-envelope"></i> danish@email.com</a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i> linkedin.com/in/danish</a>
+                    <a href="#"><i class="fab fa-github"></i> github.com/danish</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- ═══ SUMMARY ═══ -->
+        <section class="summary-section">
+            <p>
+                <i class="fas fa-quote-left" style="color:#ffb347; margin-right:8px; opacity:0.7;"></i>
+                Motivated Computer Engineering graduate with strong interests in software development,
+                embedded systems, Internet of Things (IoT), and artificial intelligence. Through academic
+                projects and industrial exposure, I have developed problem-solving, teamwork, and technical
+                skills. Eager to contribute to engineering projects while continuing to grow professionally.
+            </p>
+        </section>
+
+        <!-- ═══ MAIN GRID ═══ -->
+        <div class="cv-grid">
+
+            <!-- ─── LEFT COLUMN ─── -->
+            <aside class="cv-left">
+
+                <!-- Education -->
+                <div class="block">
+                    <div class="block-title"><i class="fas fa-university"></i> Education</div>
+                    <div class="edu-item">
+                        <div class="school">Universiti Malaysia Perlis (UniMAP)</div>
+                        <div class="degree">Bachelor of Computer Engineering (Hons.)</div>
+                        <div class="meta">
+                            <span>Oct 2021 – Aug 2025</span>
+                            <span class="cgpa">CGPA: 3.78</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Skills -->
+                <div class="block">
+                    <div class="block-title"><i class="fas fa-code"></i> Technical Skills</div>
+
+                    <div class="skill-group">
+                        <span class="label">Programming</span>
+                        <div class="skills-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Java</span>
+                            <span class="tag">C++</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <span class="label">Tools &amp; Hardware</span>
+                        <div class="skills-tags">
+                            <span class="tag">GitHub</span>
+                            <span class="tag">VS Code</span>
+                            <span class="tag">Arduino IDE</span>
+                            <span class="tag">MATLAB</span>
+                            <span class="tag">Proteus</span>
+                            <span class="tag">ESP32</span>
+                            <span class="tag">ESP8266</span>
+                            <span class="tag">Arduino Uno</span>
+                            <span class="tag">Raspberry Pi</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <span class="label">Database</span>
+                        <div class="skills-tags">
+                            <span class="tag">MySQL</span>
+                            <span class="tag">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="block">
+                    <div class="block-title"><i class="fas fa-language"></i> Languages</div>
+                    <div class="lang-item"><span class="name">Malay</span><span class="level">Native</span></div>
+                    <div class="lang-item"><span class="name">English</span><span class="level">Professional</span></div>
+                </div>
+
+                <!-- Certifications & Awards -->
+                <div class="block">
+                    <div class="block-title"><i class="fas fa-trophy"></i> Certifications &amp; Awards</div>
+                    <ul class="cert-list">
+                        <li>Dean's Award (Semester 2, 4, and 6)</li>
+                        <li>Gold Medal, UniMAP Innovation Competition 2024</li>
+                        <li>Cisco Networking Essentials Certificate</li>
+                        <li>Google Data Analytics Certificate</li>
+                    </ul>
+                </div>
+
+                <!-- References -->
+                <div class="block">
+                    <div class="block-title"><i class="fas fa-address-card"></i> Reference</div>
+                    <div class="ref-item">
+                        <div class="name">Ts. Dr. Ahmad Faizal Bin Mohd Noor</div>
+                        <div class="title">Senior Lecturer, School of Computer Engineering, UniMAP</div>
+                        <div class="email"><i class="fas fa-envelope" style="font-size:0.75rem; margin-right:4px;"></i> faizal@unimap.edu.my</div>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- ─── RIGHT COLUMN ─── -->
+            <main class="cv-right">
+
+                <!-- Work Experience -->
+                <div class="block">
+                    <div class="block-title"><i class="fas fa-briefcase"></i> Work Experience</div>
+
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <span class="title">Engineering Intern</span>
+                            <span class="date">Feb 2025 – Aug 2025</span>
+                        </div>
+                        <div class="exp-header" style="margin-bottom:0.2rem;">
+                            <span class="company"><i class="fas fa-building" style="margin-right:6px; color:#3d7eb0;"></i>Intel Technology Malaysia Sdn. Bhd., Penang</span>
+                        </div>
+                        <ul>
+                            <li>Assisted engineers in automated testing activities.</li>
+                            <li>Supported production data analysis and reporting.</li>
+                            <li>Participated in IoT-based predictive maintenance projects.</li>
+                            <li>Prepared technical documentation and reports.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Projects -->
+                <div class="block">
+                    <div class="block-title"><i class="fas fa-microchip"></i> Projects</div>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <span class="title">Smart Parking Monitoring System</span>
+                            <span class="tech">ESP32 · Firebase</span>
+                        </div>
+                        <ul>
+                            <li>IoT-based parking availability monitoring using ESP32 and Firebase.</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <span class="title">Student Academic Guidance System</span>
+                            <span class="tech">PHP · MySQL</span>
+                        </div>
+                        <ul>
+                            <li>Web-based academic recommendation system using PHP and MySQL.</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <span class="title">Smart Home Automation System</span>
+                            <span class="tech">ESP8266</span>
+                        </div>
+                        <ul>
+                            <li>Remote monitoring and appliance control using ESP8266.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </main>
+
+        </div>
+        <!-- end grid -->
+
     </div>
+    <!-- end wrapper -->
 
-    <!-- grid -->
-    <div class="grid-2">
-      <!-- sidebar -->
-      <div class="sidebar">
-        <!-- profile -->
-        <div>
-          <div class="section-title"><i class="fas fa-user-circle"></i> Profile</div>
-          <div class="summary">
-            <p>A motivated Computer Engineering graduate with strong interests in software development, embedded systems, Internet of Things (IoT), and artificial intelligence. Through academic projects and industrial exposure, I have developed problem-solving, teamwork, and technical skills. I am eager to contribute to engineering projects while continuing to grow professionally.</p>
-          </div>
-        </div>
+    <!-- ─── Small JS for scroll-reveal (optional enhancement) ─── -->
+    <script>
+        (function() {
+            'use strict';
 
-        <!-- education -->
-        <div>
-          <div class="section-title"><i class="fas fa-university"></i> Education</div>
-          <div class="edu-card">
-            <div style="font-weight: 600; color: var(--text-dark);">Universiti Malaysia Perlis (UniMAP)</div>
-            <div style="font-size: 0.9rem;">Bachelor of Computer Engineering (Hons.)</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted); display: flex; justify-content: space-between; flex-wrap: wrap;">
-              <span><i class="fas fa-calendar-alt" style="margin-right: 6px; color: var(--gold);"></i> Oct 2021 – Aug 2025</span>
-              <span><i class="fas fa-star" style="color: var(--gold);"></i> CGPA: 3.78</span>
-            </div>
-          </div>
-        </div>
+            // Reveal elements on scroll
+            const revealElements = document.querySelectorAll('.exp-item, .project-item, .edu-item, .cert-list li, .lang-item, .ref-item, .skills-tags .tag');
 
-        <!-- technical skills -->
-        <div>
-          <div class="section-title"><i class="fas fa-code"></i> Technical Skills</div>
-          <div style="background: white; border-radius: 2rem; padding: 1rem 1.4rem; border: 1px solid #e8dfd0; border-left: 6px solid var(--coral);">
-            <div style="font-weight: 500; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.3rem;">Languages</div>
-            <div class="chip-group">
-              <span class="chip">Python</span><span class="chip">Java</span><span class="chip">C++</span>
-              <span class="chip">JavaScript</span><span class="chip">HTML</span><span class="chip">CSS</span>
-            </div>
-            <div style="font-weight: 500; font-size: 0.85rem; color: var(--text-muted); margin: 0.8rem 0 0.3rem 0;">Tools &amp; Hardware</div>
-            <div class="chip-group">
-              <span class="chip">GitHub</span><span class="chip">VS Code</span><span class="chip">Arduino IDE</span>
-              <span class="chip">MATLAB</span><span class="chip">Proteus</span>
-            </div>
-            <div class="chip-group" style="margin-top: 0.2rem;">
-              <span class="chip">ESP32</span><span class="chip">ESP8266</span><span class="chip">Arduino Uno</span>
-              <span class="chip">Raspberry Pi</span>
-            </div>
-            <div style="font-weight: 500; font-size: 0.85rem; color: var(--text-muted); margin: 0.8rem 0 0.3rem 0;">Database</div>
-            <div class="chip-group">
-              <span class="chip">MySQL</span><span class="chip">Firebase</span>
-            </div>
-          </div>
-        </div>
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -20px 0px'
+            });
 
-        <!-- languages -->
-        <div>
-          <div class="section-title"><i class="fas fa-language"></i> Languages</div>
-          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-            <span class="lang-chip">Malay</span>
-            <span class="lang-chip">English</span>
-          </div>
-        </div>
+            revealElements.forEach(el => {
+                el.classList.add('reveal');
+                revealObserver.observe(el);
+            });
 
-        <!-- certifications -->
-        <div>
-          <div class="section-title"><i class="fas fa-award"></i> Certifications &amp; Awards</div>
-          <div>
-            <div class="cert-item"><i class="fas fa-medal"></i> Dean's Award (Sem 2,4,6)</div>
-            <div class="cert-item"><i class="fas fa-trophy"></i> Gold Medal, UniMAP Innovation 2024</div>
-            <div class="cert-item"><i class="fas fa-certificate"></i> Cisco Networking Essentials</div>
-            <div class="cert-item"><i class="fas fa-certificate"></i> Google Data Analytics</div>
-          </div>
-        </div>
+            // Also reveal summary paragraph if not already visible
+            const summaryP = document.querySelector('.summary-section p');
+            if (summaryP) {
+                summaryP.classList.add('visible');
+            }
 
-        <!-- reference -->
-        <div>
-          <div class="section-title"><i class="fas fa-address-card"></i> Reference</div>
-          <div class="ref-card">
-            <div class="name" style="font-weight: 600; color: var(--text-dark);">Ts. Dr. Ahmad Faizal Bin Mohd Noor</div>
-            <span class="title" style="color: var(--text-muted); font-size: 0.8rem; display: block;">Senior Lecturer, School of Computer Engineering, UniMAP</span>
-            <span class="email" style="color: var(--text-muted); font-size: 0.8rem;"><i class="fas fa-envelope" style="margin-right: 4px; color: var(--coral);"></i> faizal@unimap.edu.my</span>
-          </div>
-        </div>
-      </div>
+            // Force visible for any elements already in view
+            setTimeout(() => {
+                document.querySelectorAll('.reveal').forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight - 80) {
+                        el.classList.add('visible');
+                    }
+                });
+            }, 200);
 
-      <!-- main content -->
-      <div class="main-content">
-        <!-- experience -->
-        <div>
-          <div class="section-title"><i class="fas fa-briefcase"></i> Work Experience / Internship</div>
-          <div class="exp-item">
-            <strong style="color: var(--text-dark);">Intel Technology Malaysia Sdn. Bhd., Penang</strong>
-            <span class="meta" style="font-size:0.78rem; color:var(--text-muted); display:block; margin:0.1rem 0 0.3rem 0;"><i class="far fa-calendar-alt" style="color: var(--gold);"></i> Feb 2025 – Aug 2025</span>
-            <ul style="margin:0.3rem 0 0 1rem; font-size:0.85rem; color:var(--text-dark); list-style-type:circle;">
-              <li>Assisted engineers in automated testing activities.</li>
-              <li>Supported production data analysis and reporting.</li>
-              <li>Participated in IoT-based predictive maintenance projects.</li>
-              <li>Prepared technical documentation and reports.</li>
-            </ul>
-          </div>
-        </div>
+        })();
+    </script>
 
-        <!-- projects -->
-        <div>
-          <div class="section-title"><i class="fas fa-project-diagram"></i> Projects</div>
-          <div class="project-item">
-            <strong style="color: var(--text-dark);">Smart Parking Monitoring System</strong>
-            <div class="project-desc" style="font-size:0.85rem; color:var(--text-muted);"><i class="fas fa-microchip" style="color: var(--sage);"></i> IoT-based parking availability monitoring using ESP32 and Firebase.</div>
-          </div>
-          <div class="project-item">
-            <strong style="color: var(--text-dark);">Student Academic Guidance System</strong>
-            <div class="project-desc" style="font-size:0.85rem; color:var(--text-muted);"><i class="fas fa-globe" style="color: var(--coral);"></i> Web-based academic recommendation system using PHP and MySQL.</div>
-          </div>
-          <div class="project-item">
-            <strong style="color: var(--text-dark);">Smart Home Automation System</strong>
-            <div class="project-desc" style="font-size:0.85rem; color:var(--text-muted);"><i class="fas fa-home" style="color: var(--gold);"></i> Remote monitoring and appliance control using ESP8266.</div>
-          </div>
-        </div>
-
-        <!-- extra tag cloud -->
-        <div class="tag-cloud">
-          <div style="display: flex; flex-wrap: wrap; gap: 0.3rem 0.6rem; font-size: 0.8rem; color: var(--text-dark); align-items: center;">
-            <i class="fas fa-tag" style="color: var(--coral);"></i>
-            <span class="tag-pill">embedded</span>
-            <span class="tag-pill">IoT</span>
-            <span class="tag-pill">full-stack</span>
-            <span class="tag-pill">data analytics</span>
-            <span class="tag-pill">automation</span>
-            <span class="tag-pill">ESP32</span>
-            <span class="tag-pill">Firebase</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- footer -->
-    <div style="margin-top: 2rem; font-size: 0.7rem; color: var(--text-soft); text-align: right; border-top: 2px solid var(--coral-light); padding-top: 0.8rem; animation: fadeUp 1s ease-out;">
-      <i class="fas fa-feather-alt" style="color: var(--coral);"></i> lively beige · Danish CV
-    </div>
-  </div>
-</div>
 </body>
 </html>
